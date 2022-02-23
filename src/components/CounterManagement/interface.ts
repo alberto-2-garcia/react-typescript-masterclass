@@ -3,5 +3,6 @@ export interface CounterManagementProps {
 }
 
 export interface CounterManagementState {
-  counter: number
+  counter: number;
+  users: string[];
 }
