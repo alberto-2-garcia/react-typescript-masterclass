@@ -1,10 +1,10 @@
-export interface CounterManagementProps {
+export interface UserManagerProps {
   ownerName: string;
 }
 
-export interface CounterManagementState {
+export interface UserManagerState {
   user: number;
-  userData: UserData;
+  users: UserData[];
 }
 
 export interface UserData {
