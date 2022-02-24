@@ -63,8 +63,8 @@ export default class UserManager extends React.Component<UserManagerProps, UserM
         <h1> Counter Management </h1>
         <h2> Owner Name: {ownerName} </h2>
         <h3> User: {user} </h3>
-        <Button callback={this.handleAddClick} type='add'>Add</Button>
-        <Button callback={this.handleMinusClick} type='minus'>Minus</Button>
+        <Button callback={this.handleAddClick} type='primary'>Add</Button>
+        <Button callback={this.handleMinusClick} type='secondary'>Minus</Button>
         {users.slice(0, user).map((user, index) => (
           <UserInfo key={index} user={user} />
         ))}

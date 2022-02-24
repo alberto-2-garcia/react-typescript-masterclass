@@ -1,4 +1,4 @@
 export interface ButtonProps {
-  type: 'add' | 'minus';
+  type: 'primary' | 'secondary';
   callback: any;
 } 
