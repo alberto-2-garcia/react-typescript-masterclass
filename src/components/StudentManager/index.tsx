@@ -3,6 +3,7 @@ import { StudentManagerProps, StudentManagerState } from './interface';
 
 import { InputText } from '../InputText';
 import { Button } from '../Button';
+import { StudentContext, StudentType } from '../../context/StudentContext';
 
 export default class UserManager extends Component<StudentManagerProps, StudentManagerState> {
   constructor(props: StudentManagerProps) {
@@ -22,7 +23,7 @@ export default class UserManager extends Component<StudentManagerProps, StudentM
     } as unknown as StudentManagerState);
   }
 
-  handleSumbitEvent = (event: React.FormEvent<HTMLFormElement>) => {
+  handleSumbitEvent = (event: React.FormEvent<HTMLFormElement>, updateStudent: any) => {
     event.preventDefault();
 
     const target = event.target as typeof event.target & {
@@ -34,6 +35,10 @@ export default class UserManager extends Component<StudentManagerProps, StudentM
     const grade = target.grade.value; // typechecks!
 
     console.log(name, grade);
+    if (name && grade) {
+      updateStudent({name, grade});
+      this.setState({name: '', grade: 1});
+    }
   }
 
   render() {
@@ -42,11 +47,22 @@ export default class UserManager extends Component<StudentManagerProps, StudentM
     return (
       <div>
         <h1>Students</h1>
-        <form onSubmit={this.handleSumbitEvent}>
-          <InputText labelText='Student name' type='text' name='name' value={name} onChange={this.handleChangeEvent} />
-          <InputText min={1} max={100} labelText='Student grade' type='number' name='grade' value={grade} onChange={this.handleChangeEvent} />
-          <Button type='primary' callback={undefined} > Add student </Button>
-        </form>
+        <StudentContext.Consumer>
+          {(studentList) => (
+            <>
+              <ul>
+                {studentList.students.map(({name, grade}) => (
+                  <li key={name + grade}>{name} - {grade}</li>
+                ))}
+              </ul>
+              <form onSubmit={(event) => this.handleSumbitEvent(event, studentList.updateStudent)}>
+                <InputText labelText='Student name' type='text' name='name' value={name} onChange={this.handleChangeEvent} />
+                <InputText labelText='Student grade' type='number' name='grade' value={grade} onChange={this.handleChangeEvent} min={1} max={100} />
+                <Button type='primary' callback={undefined} > Add student </Button>
+              </form>
+            </>
+          )}
+        </StudentContext.Consumer>
       </div>
     )
   }
