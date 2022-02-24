@@ -4,6 +4,7 @@ import { StudentManagerProps, StudentManagerState } from './interface';
 import { InputText } from '../InputText';
 import { Button } from '../Button';
 import { StudentContext, StudentType } from '../../context/StudentContext';
+import { UserList } from '../StudentList';
 
 export default class UserManager extends Component<StudentManagerProps, StudentManagerState> {
   constructor(props: StudentManagerProps) {
@@ -50,11 +51,7 @@ export default class UserManager extends Component<StudentManagerProps, StudentM
         <StudentContext.Consumer>
           {(studentList) => (
             <>
-              <ul>
-                {studentList.students.map(({name, grade}) => (
-                  <li key={name + grade}>{name} - {grade}</li>
-                ))}
-              </ul>
+              <UserList students={studentList.students} />
               <form onSubmit={(event) => this.handleSumbitEvent(event, studentList.updateStudent)}>
                 <InputText labelText='Student name' type='text' name='name' value={name} onChange={this.handleChangeEvent} />
                 <InputText labelText='Student grade' type='number' name='grade' value={grade} onChange={this.handleChangeEvent} min={1} max={100} />
