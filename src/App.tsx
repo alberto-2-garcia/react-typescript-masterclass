@@ -8,12 +8,16 @@ import { StudentContextProvider, StudentContext } from './context/StudentContext
 import { StudentFilter } from './components/StudentFilter';
 import { ButtonGroup } from './components/ButtonGroup';
 import { Button } from './components/Button';
+import Modal from './components/Modal';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className='App'>
-      <h1>My App</h1>
-      <div>
+      {/* <h1>My App</h1> */}
+      <Home />
+      
+      {/* <div>
         <h1>Primary</h1>
         <ButtonGroup flexDirection='row' btnsClass='primary'>
           <Button className='primary' callback={undefined} >Yes</Button>
@@ -33,7 +37,7 @@ function App() {
           <Button className='secondary' callback={undefined} >Yes</Button>
           <Button className='secondary' callback={undefined} >No</Button>
         </ButtonGroup>
-      </div>
+      </div> */}
       {/* <StudentContextProvider >
         <StudentManager />
         <StudentContext.Consumer>
