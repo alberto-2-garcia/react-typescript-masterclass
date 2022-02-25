@@ -5,5 +5,6 @@ export interface InputTextProps {
   labelText: string;
   min?: any;
   max?: any;
+  hasError: boolean;
   onChange(event: any): void;
 }

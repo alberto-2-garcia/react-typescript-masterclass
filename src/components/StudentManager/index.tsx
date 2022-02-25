@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StudentManagerProps, StudentManagerState } from './interface';
+import { InputError, StudentManagerProps, StudentManagerState } from './interface';
 
 import { InputText } from '../InputText';
 import { Button } from '../Button';
@@ -12,15 +12,24 @@ export default class UserManager extends Component<StudentManagerProps, StudentM
 
     this.state = {
       name: '',
-      grade: 1
+      grade: '',
+      hasError: {
+        name: false,
+        grade: false
+      }
     }
   }
 
   handleChangeEvent = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { value, name } = event.currentTarget;
+
+    const hasError: InputError = {...this.state.hasError};
+
+    hasError[name as keyof InputError] = false;
     
     this.setState({
       [name]: value,
+      hasError
     } as unknown as StudentManagerState);
   }
 
@@ -38,12 +47,21 @@ export default class UserManager extends Component<StudentManagerProps, StudentM
     console.log(name, grade);
     if (name && grade) {
       updateStudent({name, grade});
-      this.setState({name: '', grade: 1});
+      this.setState({name: '', grade: ''});
+    } else {
+      const nameError = !name;
+      const gradeError = !grade;
+
+      console.log(nameError, gradeError);
+
+
+      this.setState({hasError: {name: nameError, grade: gradeError}})
     }
   }
 
   render() {
-    const { name, grade } = this.state;
+    const { name, grade, hasError } = this.state;
+    const { name: nameError, grade: gradeError } = hasError;
 
     return (
       <div>
@@ -53,8 +71,8 @@ export default class UserManager extends Component<StudentManagerProps, StudentM
             <>
               <UserList students={studentList.students} />
               <form onSubmit={(event) => this.handleSumbitEvent(event, studentList.updateStudent)}>
-                <InputText labelText='Student name' type='text' name='name' value={name} onChange={this.handleChangeEvent} />
-                <InputText labelText='Student grade' type='number' name='grade' value={grade} onChange={this.handleChangeEvent} min={1} max={100} />
+                <InputText hasError={nameError} labelText='Student name' type='text' name='name' value={name} onChange={this.handleChangeEvent} />
+                <InputText hasError={gradeError} labelText='Student grade' type='number' name='grade' value={grade} onChange={this.handleChangeEvent} min={1} max={100} />
                 <Button type='primary' callback={undefined} > Add student </Button>
               </form>
             </>
