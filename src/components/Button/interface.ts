@@ -1,4 +1,4 @@
 export interface ButtonProps {
-  type: 'primary' | 'secondary';
+  className: string;
   callback: any;
 } 

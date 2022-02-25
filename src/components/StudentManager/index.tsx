@@ -73,7 +73,7 @@ export default class UserManager extends Component<StudentManagerProps, StudentM
               <form onSubmit={(event) => this.handleSumbitEvent(event, studentList.updateStudent)}>
                 <InputText hasError={nameError} labelText='Student name' type='text' name='name' value={name} onChange={this.handleChangeEvent} />
                 <InputText hasError={gradeError} labelText='Student grade' type='number' name='grade' value={grade} onChange={this.handleChangeEvent} min={1} max={100} />
-                <Button type='primary' callback={undefined} > Add student </Button>
+                <Button className='primary' callback={undefined} > Add student </Button>
               </form>
             </>
           )}
