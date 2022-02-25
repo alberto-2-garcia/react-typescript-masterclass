@@ -1,0 +1,33 @@
+.black {
+  background-color: #000000;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #313131;
+  }
+}
+
+.selected {
+  background-color: #4b0000;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #690202;
+  }
+}
+
+.btn-group {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}

@@ -6,12 +6,35 @@ import StudentManager from './components/StudentManager'
 
 import { StudentContextProvider, StudentContext } from './context/StudentContext';
 import { StudentFilter } from './components/StudentFilter';
+import { ButtonGroup } from './components/ButtonGroup';
+import { Button } from './components/Button';
 
 function App() {
   return (
     <div className='App'>
       <h1>My App</h1>
-      <StudentContextProvider >
+      <div>
+        <h1>Primary</h1>
+        <ButtonGroup flexDirection='row' btnsClass='primary'>
+          <Button className='primary' callback={undefined} >Yes</Button>
+        </ButtonGroup>
+      </div>
+
+      <div>
+        <h1>Secondary</h1>
+        <ButtonGroup flexDirection='row' btnsClass='secondary'>
+          <Button className='secondary' callback={undefined} >Yes</Button>
+        </ButtonGroup>
+      </div>
+
+      <div>
+        <h1>Button group</h1>
+        <ButtonGroup flexDirection='column' btnsClass='black'>
+          <Button className='secondary' callback={undefined} >Yes</Button>
+          <Button className='secondary' callback={undefined} >No</Button>
+        </ButtonGroup>
+      </div>
+      {/* <StudentContextProvider >
         <StudentManager />
         <StudentContext.Consumer>
           {(studentList) => (
@@ -21,7 +44,7 @@ function App() {
             </>
           )}
         </StudentContext.Consumer>
-      </StudentContextProvider>
+      </StudentContextProvider> */}
       {/* <UserManager ownerName='idk' /> */}
     </div>
   );
