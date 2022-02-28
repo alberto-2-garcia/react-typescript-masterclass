@@ -31,13 +31,23 @@ export default class Modal extends Component<ModalProps, ModalState> {
     event.stopPropagation();
   }
 
+  onClickOutsideModalBody = () => {
+    const { onClick } = this.props;
+
+    onClick && onClick();
+}
+
   render() {
-    const { title, body, onClick, show = true } = this.props;
+    const { title, body, show = true } = this.props;
     const modalUI = ReactDOM.createPortal((
-      <div className='modal' onClick={this.modalPreventEventPropagation}>
-        <h2>{title}</h2>
-        <p>{body}</p>
-        <Button className='primary' callback={this.handleCloseModal}> Close model </Button>
+      <div className='modal-container' onClick={this.modalPreventEventPropagation}>
+        <div onClick={this.onClickOutsideModalBody} className="modal-overlay" />
+        <div className='modal-body'>
+          {/* {this.props.children} */}
+          <h2>{title}</h2>
+          <p>{body}</p>
+          <Button className='primary' callback={this.handleCloseModal}> Close model </Button>
+        </div>
       </div>),
       this.el
     );
