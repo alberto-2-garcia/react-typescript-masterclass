@@ -1,5 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link
+} from "react-router-dom";
+
 import './App.scss';
 import UserManager from './components/UserManager';
 import StudentManager from './components/StudentManager'
@@ -10,12 +17,37 @@ import { ButtonGroup } from './components/ButtonGroup';
 import { Button } from './components/Button';
 import Modal from './components/Modal';
 import Home from './components/Home';
+import LoginForm from './components/LoginForm';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleLogOut = () => {
+    setLoggedIn(false);
+  }
+
   return (
     <div>
+      {loggedIn 
+        ? 
+        <Router>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+          <Routes>
+            <Route path="/about" element={<h1>About</h1>} />
+            <Route path="/" element={<h1>Home</h1>} />
+          </Routes>
+          <Button className={'primary'} callback={handleLogOut} >Log out</Button>
+        </Router>
+        : <LoginForm setLoggedIn={setLoggedIn} />}
       {/* <h1>My App</h1> */}
-      <Home />
+      {/* <Home /> */}
       
       {/* <div>
         <h1>Primary</h1>
