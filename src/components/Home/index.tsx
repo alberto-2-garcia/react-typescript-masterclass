@@ -41,9 +41,12 @@ export default class Home extends Component<HomeProps, HomeState> {
         <Modal 
           show={showModal}
           title='Message of the day'
-          body={message}
           onClick={this.handleCloseModal}
-        />
+        >
+          <p>
+            {message}
+          </p>
+        </Modal>
       </>
     )
   }

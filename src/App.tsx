@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div>
-      {loggedIn 
+      {/* {loggedIn 
         ? 
         <Router>
           <ul>
@@ -45,9 +45,9 @@ function App() {
           </Routes>
           <Button className={'primary'} callback={handleLogOut} >Log out</Button>
         </Router>
-        : <LoginForm setLoggedIn={setLoggedIn} />}
+        : <LoginForm setLoggedIn={setLoggedIn} />} */}
       {/* <h1>My App</h1> */}
-      {/* <Home /> */}
+      <Home />
       
       {/* <div>
         <h1>Primary</h1>

@@ -38,14 +38,16 @@ export default class Modal extends Component<ModalProps, ModalState> {
 }
 
   render() {
-    const { title, body, show = true } = this.props;
+    const { title, show = true, children } = this.props;
     const modalUI = ReactDOM.createPortal((
       <div className='modal-container' onClick={this.modalPreventEventPropagation}>
         <div onClick={this.onClickOutsideModalBody} className="modal-overlay" />
         <div className='modal-body'>
           {/* {this.props.children} */}
           <h2>{title}</h2>
-          <p>{body}</p>
+          <div>
+            {children}
+          </div>
           <Button className='primary' callback={this.handleCloseModal}> Close model </Button>
         </div>
       </div>),
