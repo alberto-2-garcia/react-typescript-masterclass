@@ -18,6 +18,7 @@ import { Button } from './components/Button';
 import Modal from './components/Modal';
 import Home from './components/Home';
 import LoginForm from './components/LoginForm';
+import NotesList from './components/NotesList';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div>
+      <NotesList />
       {/* {loggedIn 
         ? 
         <Router>
@@ -47,7 +49,7 @@ function App() {
         </Router>
         : <LoginForm setLoggedIn={setLoggedIn} />} */}
       {/* <h1>My App</h1> */}
-      <Home />
+      {/* <Home /> */}
       
       {/* <div>
         <h1>Primary</h1>
