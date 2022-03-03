@@ -1,48 +1,24 @@
 import React, { useState } from 'react'
-import { createStore } from 'redux';
-import { Note, notesReducer } from '../../reducers/NotesAction';
+import { Note } from '../../reducers/NotesAction';
 import { Button } from '../Button';
-import { Provider } from 'react-redux';
+import { connect, MapDispatchToPropsFunction, MapStateToProps } from 'react-redux';
 import Notes from '../Notes';
-import Modal from '../Modal';
+import { NotesListProps } from './interface';
 
-const note: Note = {
-  title: 'Note title',
-  body: 'Note body',
-  lastModified: new Date()
-}
+const NotesList: React.FC<NotesListProps> = ({ openNote, handleShowModal }) => {
 
-const store = createStore(notesReducer, [note]);
-
-export default function NotesList() {
-
-  const [showModal, setShowModal] = useState(false);
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  }
-
-  const handleShowModal = () => {
-    setShowModal(true);
+  const handleButtonClick = () => {
+    handleShowModal('', '', -1);
   }
 
   return (
-    <>
-      <Provider store={store}>
-        <div>
-          <h1>Notes</h1>
-          {/* Notes list */}
-          <Notes />
-          <Button className={'secondary'} callback={handleShowModal} >Add note</Button>
-        </div>
-      </Provider>
-      <Modal 
-          show={showModal}
-          title='Message of the day'
-          onClick={handleCloseModal}
-        >
-          <p> Modal </p>
-        </Modal>
-    </>
+    <div>
+      <h1>Notes</h1>
+      {/* Notes list */}
+      <Notes onClick={openNote} />
+      <Button className={'secondary'} callback={handleButtonClick} >Add note</Button>
+    </div>
   )
 }
+
+export default NotesList;

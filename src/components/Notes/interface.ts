@@ -4,10 +4,16 @@ export interface NoteProps {
   note: Note
 };
 
-export interface NotesOwnProps {}
+export interface NotesOwnProps {
+  onClick(note: Note, index: number): void;
+}
 
 export interface NotesStateProps {
   notes: Note[];
 }
 
-export type NotesProps = NotesOwnProps & NotesStateProps;
+export interface NotesDispatchProps {
+  addNotes(notes: Note[]): any;
+}
+
+export type NotesProps = NotesOwnProps & NotesStateProps & NotesDispatchProps;

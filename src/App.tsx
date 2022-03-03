@@ -19,17 +19,18 @@ import Modal from './components/Modal';
 import Home from './components/Home';
 import LoginForm from './components/LoginForm';
 import NotesList from './components/NotesList';
+import NotesPage from './components/NotesPage';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
 
-  const handleLogOut = () => {
-    setLoggedIn(false);
-  }
+  // const handleLogOut = () => {
+  //   setLoggedIn(false);
+  // }
 
   return (
     <div>
-      <NotesList />
+      <NotesPage />
       {/* {loggedIn 
         ? 
         <Router>
