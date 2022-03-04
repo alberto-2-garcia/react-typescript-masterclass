@@ -1,7 +1,8 @@
 import { Note } from "../../reducers/NotesAction";
 
 export interface NoteProps {
-  note: Note
+  note: Note,
+  onClick(): void;
 };
 
 export interface NotesOwnProps {
@@ -13,7 +14,7 @@ export interface NotesStateProps {
 }
 
 export interface NotesDispatchProps {
-  addNotes(notes: Note[]): any;
+  deleteNote(index: number): any;
 }
 
 export type NotesProps = NotesOwnProps & NotesStateProps & NotesDispatchProps;

@@ -21,15 +21,15 @@ export const notesReducer: Reducer<Note[], NotesAction> = (state = [], action) =
         case "MODIFY_NOTES":
             const modifiedNote = notes[0];
             return state.map(((note, index) => {
-                console.log('map', index);
                 if (index == indexNote) {
-                    console.log('updating')
                     note.body = modifiedNote.body;
                     note.title = modifiedNote.title;
                     note.lastModified = modifiedNote.lastModified;
                 }
                 return note;
             }));
+        case "DELETE_NOTE":
+            return state.filter((note, index) => index !== indexNote);
         default:
             return state;
     }

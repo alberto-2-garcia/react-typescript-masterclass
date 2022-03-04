@@ -20,7 +20,6 @@ const NotesForm: React.FC<NotesFormProps> = ({ title, content, noteIndex, handle
     handleCloseModal();
   }
 
-  console.log("form", noteIndex);
   return (
     <div>
       <InputText name={'note-title'} value={title} type={'text'} labelText={'Note title'} hasError={false} onChange={handleTitleChange} />
