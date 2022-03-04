@@ -30,7 +30,8 @@ function App() {
 
   return (
     <div>
-      <NotesPage />
+      <h1>My app</h1>
+      {/* <NotesPage /> */}
       {/* {loggedIn 
         ? 
         <Router>
